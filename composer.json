@@ -1,7 +1,7 @@
 {
   "name": "hahadu/think-basemodel",
   "description": "# think-basemodel\nthinkphp/thinkORM的数据库基础模型扩展，实现增删改查，无限极分类\n",
-  "minimum-stability": "dev",
+  "type": "library",
   "license": "Apache-2.0",
   "authors": [
     {
@@ -23,5 +23,8 @@
     "psr-4": {
       "Hahadu\\ThinkBaseModel\\": "src/"
     }
-  }
+  },
+  "minimum-stability": "dev"
 }
+
+
