@@ -18,15 +18,15 @@
 namespace Hahadu\ThinkBaseModel;
 use Think\Model;
 use Hahadu\DataHandle\Data;
-use think\model\concern\SoftDelete;
+//use think\model\concern\SoftDelete;
 /**
  * 基础model
  */
 class BaseModel extends Model
 {
-    use SoftDelete;
-    protected $deleteTime = 'delete_time';
-    protected $defaultSoftDelete = NULL;
+    //  use SoftDelete;
+ //   protected $deleteTime = 'delete_time';
+ //   protected $defaultSoftDelete = NULL;
 
 
     /**
@@ -95,7 +95,7 @@ class BaseModel extends Model
     /**
      * 数据查询
      * @param array map 查询条件
-     * @param int type  0仅查询未被软删除数据  1 仅查询软删除数据   2 查询所有数据（包括软删除）
+     * @param int type  0仅查询未被软删除数据  1 仅查询被软删除的数据   2 查询所有数据（包括软删除）
      **/
     public function selectData($map,$type=0){
         switch ($type){
@@ -113,6 +113,7 @@ class BaseModel extends Model
                 }
         }
     }
+
 
     /**
      * 仅查询软删除的数据
@@ -178,39 +179,32 @@ class BaseModel extends Model
 
     /**
      * 获取分页数据
-     * @param  subject  $model  model对象
      * @param  array    $map    where条件
      * @param  string   $order  排序规则
      * @param  integer  $limit  每页数量
      * @param  integer  $field  $field
      * @return array            分页数据
      */
-    public function getPage($model,$map,$order='',$limit=10,$field=''){
-        $count=$model
-            ->where($map)
-            ->count();
-        $page=new_page($count,$limit);
+    public function getPage($map,$order='',$limit=10,$field=''){
         // 获取分页数据
         if (empty($field)) {
-            $list=$model
-                ->where($map)
+            $list=$this::where($map)
                 ->order($order)
-                ->limit($page->firstRow.','.$page->listRows)
-                ->select();
+                ->paginate($limit);
         }else{
-            $list=$model
-                ->field($field)
+            $list=$this::field($field)
                 ->where($map)
                 ->order($order)
-                ->limit($page->firstRow.','.$page->listRows)
-                ->select();
+                ->paginate($limit);
         }
-        $data=array(
-            'data'=>$list,
-            'page'=>$page->show()
-        );
+        $data = [
+            'list' => $list,
+            'page' => $list->render()
+        ];
         return $data;
     }
+
+
 
 
 
