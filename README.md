@@ -18,10 +18,33 @@ thinkphp/thinkORM的数据库基础模型扩展，实现增删改查，无限级
 
 use Hahadu\ThinkBaseModel\BaseModel;
 
+ //如果需要用到软删除功能需要引入SoftDeletemo模型
+
+ //use think\model\concern\SoftDelete;
+
 class User model extends BaseModel{
 
+    //    use SoftDelete;
+    
+    //     protected $deleteTime = 'delete_time';
 
-
+    repair you function
+    
 }
 
+</code>
+
+然后在控制器中直接调用方法
+<code>
+
+//查询user表
+
+$User = new User();
+
+//查询所有数据
+
+$User -> select();
+
+
+//查询
 </code>
