@@ -45,6 +45,9 @@ $User = new User();
 
 $User -> select();
 
+//无限级分类
+&User->getTreeData();
+
 
 //查询
 ```
