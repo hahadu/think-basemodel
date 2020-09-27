@@ -52,7 +52,7 @@ class BaseModel extends Model
      */
     public function deleteData($map,$type=false){
         if (empty($map)) {
-            die(50011);
+            return 50011;
         }
         $this::destroy($map,$type);
         $this->delete();
@@ -65,7 +65,7 @@ class BaseModel extends Model
      */
     public function recDelete($map){
         if(empty($map)){
-            die(500011);
+            return 50011;
         }
         $this->restore($map);
         $rec_status = $this::onlyTrashed()->where($map)->select();
@@ -203,11 +203,5 @@ class BaseModel extends Model
         ];
         return $data;
     }
-
-
-
-
-
-
 
 }

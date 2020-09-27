@@ -14,7 +14,7 @@ thinkphp/thinkORM的数据库基础模型扩展，实现增删改查，无限级
 在需要创建的model文件中直接继承basemodel文件
 示例：
 
-<code>
+```
 
 use Hahadu\ThinkBaseModel\BaseModel;
 
@@ -32,10 +32,10 @@ class User model extends BaseModel{
     
 }
 
-</code>
+```
 
 然后在控制器中直接调用方法
-<code>
+```
 
 //查询user表
 
@@ -47,4 +47,4 @@ $User -> select();
 
 
 //查询
-</code>
+```
