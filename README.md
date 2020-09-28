@@ -45,8 +45,8 @@ $User = new User();
 
 $User -> select();
 
-//无限级分类
-&User->getTreeData();
+//无限级分类 $type  默认为tree获取树形结构 level获取层级结构
+&User->getTreeData($type ); 
 
 
 //查询
