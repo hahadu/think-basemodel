@@ -28,9 +28,6 @@ class BaseModel extends Model
     use SoftDelete;
     protected $deleteTime = 'delete_time';
     protected $defaultSoftDelete = NULL;
-
-
-
     /**
      * 删除数据
      * @param   array   $map    where语句数组形式
@@ -41,9 +38,12 @@ class BaseModel extends Model
         if (empty($map)) {
             return 50011;
         }
-        $this::destroy($map,$type);
-        $this->delete();
-        $result=100013;
+        $del_data = $this::where($map)->find();
+        if(true == $type){
+            $result = $del_data->force()->delete();
+        }else{
+            $result = $del_data->delete();
+        }
         return $result;
     }
 
