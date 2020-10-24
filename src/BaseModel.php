@@ -18,16 +18,16 @@
 namespace Hahadu\ThinkBaseModel;
 use Think\Model;
 use Hahadu\DataHandle\Data;
-use think\model\concern\SoftDelete;
+//use think\model\concern\SoftDelete;
 /**
  * 基础model
  */
 class BaseModel extends Model
 {
     use BaseModelTrait;
-    use SoftDelete;
-    protected $deleteTime = 'delete_time';
-    protected $defaultSoftDelete = NULL;
+ //   use SoftDelete;
+ //   protected $deleteTime = 'delete_time';
+ //   protected $defaultSoftDelete = NULL;
     /**
      * 删除数据
      * @param   array   $map    where语句数组形式
