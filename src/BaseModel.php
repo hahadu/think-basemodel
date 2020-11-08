@@ -38,7 +38,7 @@ class BaseModel extends Model
         if (empty($map)) {
             return 50011;
         }
-        $del_data = $this::where($map)->find();
+        $del_data = $this::where($map);
         if(true == $type){
             $result = $del_data->force()->delete();
         }else{

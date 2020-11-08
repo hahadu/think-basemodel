@@ -46,7 +46,7 @@ trait BaseModelTrait
         foreach ($data as $k => $v) {
             $data[$k]=trim($v);
         }
-        $this->save($data);
+        $this::create($data);
         $id=$this->id;
         return $id;
     }
