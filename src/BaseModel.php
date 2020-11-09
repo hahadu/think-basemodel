@@ -18,16 +18,12 @@
 namespace Hahadu\ThinkBaseModel;
 use Think\Model;
 use Hahadu\DataHandle\Data;
-//use think\model\concern\SoftDelete;
 /**
  * 基础model
  */
 class BaseModel extends Model
 {
     use BaseModelTrait;
- //   use SoftDelete;
- //   protected $deleteTime = 'delete_time';
- //   protected $defaultSoftDelete = NULL;
     /**
      * 删除数据
      * @param   array   $map    where语句数组形式
@@ -38,12 +34,10 @@ class BaseModel extends Model
         if (empty($map)) {
             return 50011;
         }
-        $del_data = $this::where($map);
-        if(true == $type){
-            $result = $del_data->force()->delete();
-        }else{
-            $result = $del_data->delete();
-        }
+        $result = $this::destroy(
+            function($query)use($map){
+                $query->where($map);
+            },$type);
         return $result;
     }
 
@@ -111,6 +105,24 @@ class BaseModel extends Model
         }else{
             $result = $this::withTrashed()->select();
         }
+    }
+
+    /****
+     * 计数
+     * @param array $map 查询条件
+     * @param bool $delete true 只统计软删除数据 ，false不统计软删除数据
+     * @return int
+     */
+    public function getCountData($map=[],$delete=false){
+        if(!empty($map)){
+            $where = $this::where($map);
+        }else{
+            $where = $this;
+        }
+        if($delete==true){
+            $where->onlyTrashed()->count();
+        }
+        return $where->count();
     }
 
 
