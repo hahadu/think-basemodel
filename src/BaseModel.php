@@ -82,12 +82,12 @@ class BaseModel extends Model
     }
 
     /****
-     * 检查数据是否存在
+     * 检查数据是否为空
      * @param array $map 查询条件
-     * @return bool false:不存在 ture：存在
+     * @return bool false:不为空 ture：为空
      */
-    public function checkEmpty($map){
-        return !$this->where($map)->findOrEmpty()->isEmpty();
+    public function checkDataEmpty($map){
+        return $this->where($map)->findOrEmpty()->isEmpty();
     }
 
 
