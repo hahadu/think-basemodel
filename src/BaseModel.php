@@ -81,6 +81,15 @@ class BaseModel extends Model
         }
     }
 
+    /****
+     * 检查数据是否存在
+     * @param array $map 查询条件
+     * @return bool false:不存在 ture：存在
+     */
+    public function checkEmpty($map){
+        return !$this->where($map)->findOrEmpty()->isEmpty();
+    }
+
 
     /**
      * 仅查询软删除的数据
