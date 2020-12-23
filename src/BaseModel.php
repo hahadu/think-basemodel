@@ -34,10 +34,14 @@ class BaseModel extends Model
         if (empty($map)) {
             return 50011;
         }
-        $result = $this::destroy(
-            function($query)use($map){
-                $query->where($map);
-            },$type);
+        if($type === false){
+            $result = $this::where($map)->delete();
+        }else{
+            $result = $this::destroy(
+                function($query)use($map){
+                    $query->where($map);
+                },$type);
+        }
         return $result;
     }
 
@@ -89,7 +93,6 @@ class BaseModel extends Model
     public function checkDataEmpty($map){
         return $this->where($map)->findOrEmpty()->isEmpty();
     }
-
 
     /**
      * 仅查询软删除的数据
