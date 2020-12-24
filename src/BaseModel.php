@@ -25,7 +25,7 @@ class BaseModel extends Model
 {
     use BaseModelTrait;
     /**
-     * 删除数据
+     * 模型删除数据
      * @param   array   $map    where语句数组形式
      * @param   bool   $type     删除模式 true为真实删除 false为软删除
      * @return  boolean         操作是否成功
@@ -34,14 +34,10 @@ class BaseModel extends Model
         if (empty($map)) {
             return 50011;
         }
-        if($type === false){
-            $result = $this::where($map)->delete();
-        }else{
-            $result = $this::destroy(
-                function($query)use($map){
-                    $query->where($map);
-                },$type);
-        }
+        $result = $this::destroy(
+            function($query)use($map){
+                $query->where($map);
+            },$type);
         return $result;
     }
 
