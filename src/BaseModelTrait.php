@@ -20,6 +20,7 @@ namespace Hahadu\ThinkBaseModel;
 
 use Hahadu\DataHandle\Data;
 
+
 trait BaseModelTrait
 {
     /**
@@ -81,9 +82,9 @@ trait BaseModelTrait
         }
         // 获取树形或者结构数据
         if($type=='tree'){
-            $data=Data::tree($data,$name,$child,$parent);
+            $data=Data::make($data)->tree($name,$child,$parent);
         }elseif($type="level"){
-            $data=Data::channelLevel($data,0,'&nbsp;',$child);
+            $data=Data::make($data)->channelLevel(0,'&nbsp;',$child);
         }
         return $data;
     }

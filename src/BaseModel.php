@@ -24,6 +24,7 @@ use Hahadu\DataHandle\Data;
 class BaseModel extends Model
 {
     use BaseModelTrait;
+
     /**
      * 模型删除数据
      * @param   array   $map    where语句数组形式
